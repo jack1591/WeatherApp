@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp20.domain.location.LocationTracker
-import com.example.weatherapp20.domain.repository.WeatherRepository
-import com.example.weatherapp20.domain.util.Resource
+import com.example.weatherapp20.weather.domain.location.LocationTracker
+import com.example.weatherapp20.weather.domain.repository.WeatherRepository
+import com.example.weatherapp20.weather.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

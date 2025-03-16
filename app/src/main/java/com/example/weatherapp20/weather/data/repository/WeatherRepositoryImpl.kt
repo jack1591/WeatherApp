@@ -1,10 +1,10 @@
 package com.example.weatherapp20.weather.data.repository
 
-import com.example.weatherapp20.data.mappers.toWeatherInfo
-import com.example.weatherapp20.data.remote.WeatherApi
-import com.example.weatherapp20.domain.repository.WeatherRepository
-import com.example.weatherapp20.domain.util.Resource
-import com.example.weatherapp20.domain.weather.WeatherInfo
+import com.example.weatherapp20.weather.data.mappers.toWeatherInfo
+import com.example.weatherapp20.weather.data.remote.WeatherApi
+import com.example.weatherapp20.weather.domain.repository.WeatherRepository
+import com.example.weatherapp20.weather.domain.util.Resource
+import com.example.weatherapp20.weather.domain.weather.WeatherInfo
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(

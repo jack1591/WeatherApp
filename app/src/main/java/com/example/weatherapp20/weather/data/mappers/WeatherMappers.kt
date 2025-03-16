@@ -1,10 +1,10 @@
 package com.example.weatherapp20.weather.data.mappers
 
-import com.example.weatherapp20.data.remote.WeatherDataDto
-import com.example.weatherapp20.data.remote.WeatherDto
-import com.example.weatherapp20.domain.weather.WeatherData
-import com.example.weatherapp20.domain.weather.WeatherInfo
-import com.example.weatherapp20.domain.weather.WeatherType
+import com.example.weatherapp20.weather.data.remote.WeatherDataDto
+import com.example.weatherapp20.weather.data.remote.WeatherDto
+import com.example.weatherapp20.weather.domain.weather.WeatherData
+import com.example.weatherapp20.weather.domain.weather.WeatherInfo
+import com.example.weatherapp20.weather.domain.weather.WeatherType
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

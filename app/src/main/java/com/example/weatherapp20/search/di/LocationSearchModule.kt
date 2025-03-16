@@ -1,9 +1,7 @@
-package com.example.weatherapp20.weather.di
+package com.example.weatherapp20.search.di
 
-import android.app.Application
+import com.example.weatherapp20.search.data.remote.LocationApi
 import com.example.weatherapp20.weather.data.remote.WeatherApi
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,15 +10,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.create
 import javax.inject.Singleton
+
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object LocationSearchModule {
 
     @Provides
     @Singleton
-    fun provideWeatherApi(): WeatherApi {
+    fun provideLocationSearchApi(): LocationApi {
         return Retrofit.Builder()
-            .baseUrl("https://api.open-meteo.com/")
+            .baseUrl("https://geocoding-api.open-meteo.com/")
             .addConverterFactory(
                 MoshiConverterFactory.create()
             )
@@ -28,9 +27,4 @@ object AppModule {
             .create()
     }
 
-    @Provides
-    @Singleton
-    fun provideFusedLocationProviderClient(app: Application): FusedLocationProviderClient{
-        return LocationServices.getFusedLocationProviderClient(app)
-    }
 }
