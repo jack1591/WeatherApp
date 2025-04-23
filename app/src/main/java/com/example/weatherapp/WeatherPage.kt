@@ -167,6 +167,7 @@ fun WeatherDetails(data: WeatherModel, viewModel:WeatherViewModel){
                                     for (j in 0..23 step 6) {
                                         val hourInfo = dayInfo.hour[j]
                                         val periodInfoData = PeriodInfoData(
+                                            //dayTimeList[j/6],
                                             hourInfo.time,
                                             hourInfo.condition.icon,
                                             hourInfo.temp_c,
@@ -188,7 +189,7 @@ fun WeatherDetails(data: WeatherModel, viewModel:WeatherViewModel){
         Spacer(modifier = Modifier.height(25.dp))
         if (viewModel.currentState.value == 0)
             CurrentWeather(data)
-        else PeriodInfoList(list = viewModel.weatherInfoList)
+        else PeriodInfoList(viewModel.currentState.value, list = viewModel.weatherInfoList)
 
     }
 }

@@ -15,7 +15,7 @@ import coil.compose.AsyncImage
 import com.example.weatherapp.api.WeatherModel
 
 data class PeriodInfoData(
-    val periodOfTime: String,
+    var periodOfTime: String,
     val nameOfImage: String,
     val temp_c: String,
     val windSpeed: String
