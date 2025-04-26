@@ -72,4 +72,7 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation("androidx.compose.runtime:runtime-livedata:1.7.8")
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation ("com.google.accompanist:accompanist-permissions:0.34.0")
 }

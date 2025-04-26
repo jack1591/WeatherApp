@@ -1,5 +1,7 @@
 package com.example.weatherapp
 
+import android.Manifest
+import android.location.Location
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +24,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -31,21 +34,53 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.weatherapp.api.NetworkResponse
 import com.example.weatherapp.api.WeatherModel
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun WeatherPage(viewModel: WeatherViewModel){
+    val context = LocalContext.current
+    val locationPermissionState = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
+
+    var locationText by remember { mutableStateOf("Waiting for location...") }
+
     var city by remember {
         mutableStateOf("")
     }
 
     val weatherResult = viewModel.weatherResult.observeAsState()
+
+    LaunchedEffect(Unit) {
+        if (!locationPermissionState.status.isGranted) {
+            locationPermissionState.launchPermissionRequest()
+        }
+    }
+
+    LaunchedEffect(locationPermissionState.status) {
+        if (locationPermissionState.status.isGranted) {
+            locationText = "Getting location..."
+            getCurrentLocationOnce(context) { location ->
+                location?.let {
+                    locationText = "${it.latitude},${it.longitude}"
+                    viewModel.getData(locationText)
+                } ?: run {
+                    locationText = "Location not available"
+                }
+            }
+        } else {
+            locationText = "Location permission not granted"
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -87,7 +122,9 @@ fun WeatherPage(viewModel: WeatherViewModel){
             is NetworkResponse.Success -> {
                 WeatherDetails(data = result.data, viewModel)
             }
-            null -> {}
+            null -> {
+                //Text(text = locationText)
+            }
         }
     }
 }
