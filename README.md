@@ -1,18 +1,17 @@
-# My Jetpack Compose App
+# WeatherApp
 
-Это Android-приложение, использующее Jetpack Compose для построения UI.
+Это Android-приложение для прогноза погоды, использующая api:  https://api.weatherapi.com.
 
 ## Зависимости
 
-Проект использует следующие библиотеки и фреймворки:
+Проект использует следующие библиотеки:
 
 - **AndroidX Core и Lifecycle** — базовые компоненты Android.
-- **Jetpack Compose** — для построения UI (BOM, Material3, UI Toolkit, Runtime LiveData).
+- **Jetpack Compose** — для построения UI.
 - **Retrofit + Gson** — для работы с API и парсинга JSON.
 - **Coil** — для загрузки и отображения изображений.
 - **Google Play Services Location** — для получения геолокации.
 - **Accompanist Permissions** — для управления разрешениями в Compose.
-- **JUnit, Espresso, Compose Testing** — для написания unit и UI тестов.
 
 
 ## Сборка и запуск
